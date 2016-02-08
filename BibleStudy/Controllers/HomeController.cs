@@ -19,10 +19,7 @@ namespace BibleStudy.Controllers
 
         // GET: api/Home/5
         
-        public string Get(int id)
-        {
-            return "value";
-        }
+
 
         // POST: api/Home
         public void Post([FromBody]string value)

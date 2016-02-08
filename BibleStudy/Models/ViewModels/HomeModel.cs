@@ -12,7 +12,7 @@ namespace BibleStudy.Models.ViewModels
         {
             bible = BibleAdapter.getBible();
             prists = BibleAdapter.getPriest();
-            photo = "Resource/Images/Background.jpg";
+            photo = "/Resource/Images/Background.jpg";
         }
         public string photo { get; set; }
         public List<BibleContent>  bible { get; set; }

@@ -111,7 +111,7 @@ namespace BibleStudy.DataLayer
         /// <returns>返回一个表集合(DataTableCollection)表示查询得到的数据集</returns>
         public static DataTableCollection GetTable(CommandType cmdTye, string cmdText, SqlParameter[] commandParameters)
         {
-            return GetTable(cmdTye, cmdText, commandParameters);
+            return GetTable(connectionString,cmdTye, cmdText, commandParameters);
         }
 
 

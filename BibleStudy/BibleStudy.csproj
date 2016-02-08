@@ -224,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="BibleViews\Home - Copy.html" />
     <Content Include="BibleViews\Home.html" />
     <Content Include="BibleViews\HtmlPage1.html" />
     <Content Include="Content\bootstrap.css" />
@@ -235,9 +236,11 @@
     <Content Include="Home.html" />
     <Content Include="JS\Home\Data\BibleContent.js" />
     <Content Include="JS\Home\Home.js" />
+    <Content Include="JS\Tools.js" />
     <Content Include="Resource\Images\haha.jpg" />
     <Content Include="Resource\Images\hellp.jpg" />
     <Content Include="Resource\Images\Background.jpg" />
+    <Content Include="Resource\Images\LL.jpg" />
     <Content Include="Resource\Images\xiangsi.jpg" />
     <Content Include="Resource\Images\xiuse.jpg" />
     <Content Include="Scripts\angular-animate.js" />
@@ -1053,6 +1056,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Test\AngularTest.html" />
+    <Content Include="Test\controller.js" />
+    <Content Include="Test\tests.js" />
+    <Content Include="Test\unit-tests.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

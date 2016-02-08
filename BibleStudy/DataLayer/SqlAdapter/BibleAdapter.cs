@@ -11,14 +11,14 @@ namespace BibleStudy.DataLayer.SqlAdapter
     public class BibleAdapter
     {
         private static readonly string CONTENT = "content";
-        private static readonly string DAY = "WEEKDAY";
+        private static readonly string DAY = "WEEK_DAY";
         private static readonly string NAME = "name";
         private static readonly string PHOTO = "photo";
         private static readonly string THINKING = "thinking";
         private static readonly string IMAGE_PATH = "path";
         public static List<BibleContent> getBible()
         {
-            string sqlStr = "SELECT  B_CONTENT AS content, WEEK_DAY, IMAGE_PATH as path  FROM BIBLECONTENT B, CURRENT_BIBLE C WHERE (B.BID=C.CID)";
+            string sqlStr = "SELECT  B_CONTENT AS content, B.WEEK_DAY, IMAGE_PATH as path  FROM BIBLE_CONTENT B, CURRENT_BIBLE C WHERE (B.BID=C.CID)";
             DataTableCollection tables =  SqlHelper.GetTableText(sqlStr, null);
             DataTable table = tables[0];
             List<BibleContent> results = new List<BibleContent>();
@@ -31,12 +31,11 @@ namespace BibleStudy.DataLayer.SqlAdapter
                 content.imagePath = Convert.ToString(row[IMAGE_PATH]);
                 results.Add(content);
             }
-
             return results;
         }
         public static List<PriestInfo> getPriest()
         {
-            string sqlStr = "SELECT  U.NICK_NAME AS name, U.PHOTO AS photo, T.THINK_CONTENT AS thinking FROM USERS U,THINK T WHERE (U.IS_ADMIN= true AND T.UID=U.UID)";
+            string sqlStr = "SELECT  UB.NICK_NAME AS name, UB.PHOTO AS photo, T.THINK_CONTENT AS thinking FROM BIBLE_THINKING T,USER_BASIC_INFO UB WHERE (T.UID=UB.UID)";
             DataTableCollection tables = SqlHelper.GetTableText(sqlStr, null);
             DataTable table = tables[0];
             List<PriestInfo> results = new List<PriestInfo>();
@@ -47,6 +46,7 @@ namespace BibleStudy.DataLayer.SqlAdapter
                 content.name = row[NAME] as string;
                 content.photoPath = row[PHOTO] as string;
                 content.thinking = row[THINKING] as string;
+                results.Add(content);
             }
             return results;
         }

@@ -7,7 +7,6 @@
     <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../JS/Tools.js"></script>
 </head>
 <body ng-app="BibleHome">
     <div class="body_style"  ng-controller="HomeController" >
@@ -29,14 +28,14 @@
             </div>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation">
-                    <a role="menuitem" tabindex="-1" href="#">Chinese</a>
+                    <a role="menuitem" tabindex="-1" href="#">Java</a>
                 </li>
                 <li role="presentation">
-                    <a role="menuitem" tabindex="-1" href="#">English</a>
+                    <a role="menuitem" tabindex="-1" href="#">数据挖掘</a>
                 </li>
                 <li role="presentation">
                     <a role="menuitem" tabindex="-1" href="#">
-                        English
+                        数据通信/网络
                     </a>
                 </li>
                 <li role="presentation" class="divider"></li>
@@ -48,31 +47,38 @@
         <div class="Top" style="overflow:hidden;width:50px;"></div><!--填充剩下的区域-->
         
         <div>
-            <img class="BackgroundImg" ng-src="..{{background}}"/>
+            <img class="BackgroundImg" src="/Resource/Images/Background.jpg"/>
         </div>
         <div style="width:100%;border:1px solid black;background-color:yellowgreen; "><!--剩下有背景地方的容器-->
             <div style="margin-left:100px;height:100px;margin-bottom:10px ">
                 <hi  style="font-size:80px; margin-left:20px">----- Daily Bible Study------</hi>
             </div>
-            <div style="height:540px;width:100%;"><!--轮播-->
-                <div id="myCarousel"  class="carousel slide BibleStyle" >
+            <div style="height:540px;width:100%;   "><!--轮播-->
+                <div id="myCarousel" class="carousel slide BibleStyle">
                     <!-- 轮播（Carousel）指标 -->
-                    <ol class="carousel-indicators BibleIndicator"  >
-                        <li data-target="#myCarousel" ng-repeat="bible in bibleList|orderBy:'dateWeek'" data-slide-to="{{$index}}" style="width:40px; margin-left:15px" ></li>
+                    <ol class="carousel-indicators BibleIndicator">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active " style="width:40px"></li>
+                        <li data-target="#myCarousel" data-slide-to="1" style="width:40px"></li>
+                        <li data-target="#myCarousel" data-slide-to="2" style="width:40px"></li>
                     </ol>
                     <!-- 轮播（Carousel）项目 -->
-                    <div>
-                        <div class="carousel-inner " >
-                            <div   class="item BibleContent" ng-repeat="bible in bibleList|orderBy:'dateWeek'"  ng-class="{active:BibleShowList[$index]}">
-                                <div class="SinglerBible">
-                                    <div>{{bible.content}}</div>
-                                    <img ng-src="..{{bible.imagePath}}" style="width:100%;height:100%" >
-                                </div>
-                                
-                            </div>
+                    <div class="carousel-inner">
+                        <div class="item active BibleContent">
+                            <img src="/Resource/Images/xiangsi.jpg" alt="First slide" class="SinglerBible">
+                            <img src="/Resource/Images/xiuse.jpg" alt="First slide" class="SinglerBible">
+                            <img src="/Resource/Images/haha.jpg" alt="First slide" class="SinglerBible">
+                        </div>
+                        <div class="item BibleContent">
+                            <img src="/Resource/Images/xiuse.jpg" alt="First slide" class="SinglerBible">
+                            <img src="/Resource/Images/haha.jpg" alt="First slide" class="SinglerBible">
+                            <img src="/Resource/Images/xiangsi.jpg" alt="First slide" class="SinglerBible">
+                        </div>
+                        <div class="item BibleContent">
+                            <img src="/Resource/Images/haha.jpg" alt="First slide" class="SinglerBible">
+                            <img src="/Resource/Images/xiangsi.jpg" alt="First slide" class="SinglerBible">
+                            <img src="/Resource/Images/xiuse.jpg" alt="First slide" class="SinglerBible">
                         </div>
                     </div>
-                   
                     <!-- 轮播（Carousel）导航 -->
                     <a class="carousel-control left" href="#myCarousel"
                        data-slide="prev">&lsaquo;</a>
@@ -82,19 +88,34 @@
             </div>
             
         </div>
-        <div class="PriestDiv" >
-            <div ng-repeat="priest in priestList | orderBy:'name'" class="PriestImageDiv" ng-mouseenter="priestShow($index)" ng-mouseleave="priestShow($index)" >
-                <img class="PriestImage" ng-src="..{{priest.photoPath}}" ng-show="PriestShowList[$index]"/>
-                <div class="PriestImage" ng-show="!(PriestShowList[$index])">
-                    {{priest.thinking}}
-                </div>
+        <div class="PriestDiv">
+            <div class="PriestImageDiv">
+                <img class="PriestImage" src="../Resource/Images/LL.jpg" />
+            </div>
+            <div class="PriestImageDiv">
+                <img class="PriestImage" src="../Resource/Images/LL.jpg" />
+            </div>
+            <div class="PriestImageDiv">
+                <img class="PriestImage" src="../Resource/Images/LL.jpg" />
+            </div>
+            <div class="PriestImageDiv">
+                <img class="PriestImage" src="../Resource/Images/LL.jpg" />
+            </div>
+            <div class="PriestImageDiv">
+                <img class="PriestImage" src="../Resource/Images/LL.jpg" />
+            </div>
+            <div class="PriestImageDiv">
+                <img class="PriestImage" src="../Resource/Images/LL.jpg" />
+            </div>
+            <div class="PriestImageDiv">
+                <img class="PriestImage" src="../Resource/Images/LL.jpg" />
             </div>
         </div> <!--牧师部分后面做-->
         <footer style="height:200px;border-color:black;border-width:20px;"></footer>
         
     </div>
-    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
-    <script type="text/javascript" src="../JS/Home/Home.js"></script>
-
+    <script type="text/javascript">
+        
+    </script>
 </body>
 </html>
