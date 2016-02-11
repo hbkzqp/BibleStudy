@@ -450,11 +450,13 @@ namespace BibleStudy.DataLayer
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 SqlTransaction tran = connection.BeginTransaction();
                 try
                 {
                     foreach (SqlCommand cmd in sqlList)
                     {
+                        cmd.Connection = connection;
                         cmd.Transaction = tran;
                         cmd.ExecuteNonQuery();
                     }
@@ -465,7 +467,10 @@ namespace BibleStudy.DataLayer
                     tran.Rollback();
                     throw e;
                 }
-                
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
     }

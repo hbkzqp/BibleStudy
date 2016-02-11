@@ -207,6 +207,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdministratorController\BibleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataLayer\CommonInfo.cs" />
     <Compile Include="DataLayer\SqlAdapter\BibleAdapter.cs" />
     <Compile Include="DataLayer\SqlAdapter\BibleAdminAdapter.cs" />
     <Compile Include="DataLayer\SqlHelper.cs" />

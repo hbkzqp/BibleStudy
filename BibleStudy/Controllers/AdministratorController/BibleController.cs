@@ -1,4 +1,5 @@
-﻿using BibleStudy.DataLayer.SqlAdapter;
+﻿using BibleStudy.DataLayer;
+using BibleStudy.DataLayer.SqlAdapter;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,8 +72,9 @@ namespace BibleStudy.Controllers.AdministratorController
                     string dic = fileInfo.DirectoryName;
                     image = dic +"\\"+ date + provider.FileData[0].Headers.ContentDisposition.FileName.Replace("\"","");
                     fileInfo.MoveTo(image);
+                    image = CommonInfo.IMAGE_PATH+ date + provider.FileData[0].Headers.ContentDisposition.FileName.Replace("\"", "");
                 }
-                //BibleAdminAdapter.AddBible(date, image, content);
+                BibleAdminAdapter.AddBible(date, image, content);
                 return Redirect("http://localhost:50042/BibleViews/Administrator/HandleOK.html");
                 //return new HttpResponseMessage()
                 //{
