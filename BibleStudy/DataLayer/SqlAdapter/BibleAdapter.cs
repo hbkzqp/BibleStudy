@@ -18,8 +18,16 @@ namespace BibleStudy.DataLayer.SqlAdapter
         private static readonly string IMAGE_PATH = "path";
         public static List<BibleContent> getBible()
         {
-            string sqlStr = "SELECT  B_CONTENT AS content, B.WEEK_DAY, IMAGE_PATH as path  FROM BIBLE_CONTENT B, CURRENT_BIBLE C WHERE (B.BID=C.CID)";
-            DataTableCollection tables =  SqlHelper.GetTableText(sqlStr, null);
+            string sqlStr = "SELECT  B_CONTENT AS content, B.WEEK_DAY, IMAGE_PATH as path  FROM BIBLE_CONTENT B WHERE B.B_DATE IN (@DAY1,@DAY2,@DAY3,@DAY4,@DAY5,@DAY6)";
+            List<string> thisWeek = getThisWeek();
+            SqlParameter day1 = new SqlParameter("@DAY1", thisWeek[0]);
+            SqlParameter day2 = new SqlParameter("@DAY2", thisWeek[1]);
+            SqlParameter day3 = new SqlParameter("@DAY3", thisWeek[2]);
+            SqlParameter day4 = new SqlParameter("@DAY4", thisWeek[3]);
+            SqlParameter day5 = new SqlParameter("@DAY5", thisWeek[4]);
+            SqlParameter day6 = new SqlParameter("@DAY6", thisWeek[5]);
+            SqlParameter[] paras = { day1, day2, day3, day4, day5,day6 };
+            DataTableCollection tables =  SqlHelper.GetTableText(sqlStr, paras);
             DataTable table = tables[0];
             List<BibleContent> results = new List<BibleContent>();
             for(int i = 0;i<table.Rows.Count;i++)
@@ -49,6 +57,29 @@ namespace BibleStudy.DataLayer.SqlAdapter
                 results.Add(content);
             }
             return results;
+        }
+        private static List<string> getThisWeek()
+        {
+            DateTime today = DateTime.Now;
+            int weekday = (int)today.DayOfWeek;
+            List<DateTime> weekList = new List<DateTime>();
+            List<string> result = new List<string>();
+            for (int i = 0;i<weekday;i++)
+            {
+                DateTime dt = today.AddDays(0 - i);
+                weekList.Add(dt);
+            }
+            for (int i = weekday+1; i < 7; i++)
+            {
+                DateTime dt = today.AddDays(i-weekday);
+                weekList.Add(dt);
+            }
+            foreach(DateTime dt in weekList)
+            {
+                string dateStr = dt.ToString("yyyy-MM-dd");
+                result.Add(dateStr);
+            }
+            return result;
         }
     }
 }
