@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace BibleStudy.Controllers.AdministratorController
 {
@@ -27,7 +28,7 @@ namespace BibleStudy.Controllers.AdministratorController
         }
 
         // POST: api/Bible
-        public async Task<HttpResponseMessage> PostBible()
+        public async Task<RedirectResult> PostBible()
         {
             // Check if the request contains multipart/form-data.
             if (!Request.Content.IsMimeMultipartContent())
@@ -72,15 +73,15 @@ namespace BibleStudy.Controllers.AdministratorController
                     fileInfo.MoveTo(image);
                 }
                 //BibleAdminAdapter.AddBible(date, image, content);
-                Redirect("http://localhost:50042/BibleViews/Administrator/AddBIble.html");
-                return new HttpResponseMessage()
-                {
-                    Content = new StringContent("<a href=\"AddBible.html\">Add</a>")
-                };
+                return Redirect("http://localhost:50042/BibleViews/Administrator/HandleOK.html");
+                //return new HttpResponseMessage()
+                //{
+                //    Content = new StringContent("<a href=\"AddBible.html\">Add</a>")
+                //};
             }
             catch (System.Exception e)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
+                return  Redirect("http://localhost:50042/BibleViews/Administrator/HandleOK.html");
             }
         }
         // PUT: api/Bible/5
