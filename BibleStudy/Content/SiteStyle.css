@@ -79,6 +79,17 @@
     top:515px;
 }
     
+.SingleBibleContent
+{
+    margin-left:40px;
+    width:400px;
+    height:100%;
+    float:left;
+    color:white;
+    word-wrap: break-word; 
+    word-break: normal;
+    overflow:auto;
+}
 .BibleSingleIndicator
 {
     width:40px;

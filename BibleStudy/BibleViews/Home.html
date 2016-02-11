@@ -64,9 +64,10 @@
                     <div>
                         <div class="carousel-inner " >
                             <div   class="item BibleContent" ng-repeat="bible in bibleList|orderBy:'dateWeek'"  ng-class="{active:BibleShowList[$index]}">
-                                <div class="SinglerBible">
-                                    <div>{{bible.content}}</div>
-                                    <img ng-src="..{{bible.imagePath}}" style="width:100%;height:100%" >
+                                <div class="SinglerBible" style="background-image:url(..{{bible.imagePath}});background-size:cover;">
+                                       <div class="SingleBibleContent">
+                                           {{bible.content}}
+                                       </div>
                                 </div>
                                 
                             </div>

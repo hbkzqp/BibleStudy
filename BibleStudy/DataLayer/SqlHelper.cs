@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections;
+using System.Collections.Generic;
+
 namespace BibleStudy.DataLayer
 {
     public abstract class SqlHelper
@@ -443,6 +445,28 @@ namespace BibleStudy.DataLayer
             para.ParameterName = name;
             para.Value = value;
             return para;
+        }
+        public static void executeByTrancaction(List<SqlCommand> sqlList)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlTransaction tran = connection.BeginTransaction();
+                try
+                {
+                    foreach (SqlCommand cmd in sqlList)
+                    {
+                        cmd.Transaction = tran;
+                        cmd.ExecuteNonQuery();
+                    }
+                    tran.Commit();
+                }
+                catch(Exception e)
+                {
+                    tran.Rollback();
+                    throw e;
+                }
+                
+            }
         }
     }
 
