@@ -18,8 +18,12 @@ namespace BibleStudy.Controllers
         }
 
         // GET: api/Home/5
-        
 
+        public HomeModel Get(int a)
+        {
+            HomeModel home = new HomeModel();
+            return home;
+        }
 
         // POST: api/Home
         public void Post([FromBody]string value)

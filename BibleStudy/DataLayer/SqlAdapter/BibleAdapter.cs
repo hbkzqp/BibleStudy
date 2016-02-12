@@ -58,6 +58,7 @@ namespace BibleStudy.DataLayer.SqlAdapter
             }
             return results;
         }
+       
         private static List<string> getThisWeek()
         {
             DateTime today = DateTime.Now;

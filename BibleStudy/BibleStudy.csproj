@@ -214,6 +214,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Log.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -228,7 +229,9 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="BibleViews\Administrator\AddBIble.html" />
+    <Content Include="BibleViews\Administrator\Error.html" />
     <Content Include="BibleViews\Administrator\HandleOK.html" />
+    <Content Include="BibleViews\Administrator\UpdateBible.html" />
     <Content Include="BibleViews\Home - Copy.html" />
     <Content Include="BibleViews\Home.html" />
     <Content Include="BibleViews\HtmlPage1.html" />
@@ -239,9 +242,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Home.html" />
+    <Content Include="JS\Home\Apps\Administrator\updateBible.js" />
     <Content Include="JS\Home\Data\BibleContent.js" />
     <Content Include="JS\Home\Home.js" />
     <Content Include="JS\Tools.js" />
+    <Content Include="Resource\Images\Default.jpg" />
     <Content Include="Resource\Images\haha.jpg" />
     <Content Include="Resource\Images\hellp.jpg" />
     <Content Include="Resource\Images\Background.jpg" />
@@ -1085,6 +1090,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="JS\Home\Controllers\" />
+    <Folder Include="LOG\" />
     <Folder Include="Models\DataModels\" />
     <Folder Include="PartialVIews\" />
   </ItemGroup>

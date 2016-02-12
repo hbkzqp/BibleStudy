@@ -1,5 +1,6 @@
 ﻿using BibleStudy.DataLayer;
 using BibleStudy.DataLayer.SqlAdapter;
+using BibleStudy.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,17 +18,20 @@ namespace BibleStudy.Controllers.AdministratorController
     public class BibleController : ApiController
     {
         // GET: api/Bible
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public BibleContent GetName(string date)
         {
-            return new string[] { "value1", "value2" };
+            return BibleAdminAdapter.getDayBible(date);
         }
 
-        // GET: api/Bible/5
-        public string Get(int id)
+        //GET: api/Bible/5
+        public int Get()
         {
-            return "value";
+            string root = HttpContext.Current.Server.MapPath("~/Resource/Images");
+            var provider = new MultipartFormDataStreamProvider(root);
+            Request.Content.ReadAsMultipartAsync(provider);
+            return 0;
         }
-
         // POST: api/Bible
         public async Task<RedirectResult> PostBible()
         {
@@ -68,6 +72,13 @@ namespace BibleStudy.Controllers.AdministratorController
                 // This illustrates how to get the file names for uploaded files.
                 foreach (var file in provider.FileData)
                 {
+                    if(provider.FileData[0].Headers.ContentDisposition.FileName.Equals(""))
+                    {
+                        image = CommonInfo.DEFAULT_IMAGE_PATH;
+                        FileInfo DfileInfo = new FileInfo(file.LocalFileName);
+                        DfileInfo.Delete();
+                        break;
+                    }
                     FileInfo fileInfo = new FileInfo(file.LocalFileName);
                     string dic = fileInfo.DirectoryName;
                     image = dic +"\\"+ date + provider.FileData[0].Headers.ContentDisposition.FileName.Replace("\"","");
@@ -83,7 +94,8 @@ namespace BibleStudy.Controllers.AdministratorController
             }
             catch (System.Exception e)
             {
-                return  Redirect("http://localhost:50042/BibleViews/Administrator/HandleOK.html");
+                Log.writeLog(e.StackTrace, e.Message);
+                return  Redirect("http://localhost:50042/BibleViews/Administrator/Error.html");
             }
         }
         // PUT: api/Bible/5

@@ -6,7 +6,8 @@
     {
         $http({
                     method: 'GET',
-                    url: '/api/Home/Get'
+                    url: '/api/Home/Get',
+                    data:{"a":2}
         }).then(function successCallback(response) {
                 var a = response;
                     // this callback will be called asynchronously

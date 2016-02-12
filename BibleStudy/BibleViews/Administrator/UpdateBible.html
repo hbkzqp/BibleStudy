@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="updateBible">
+    <div ng-controller="bibleContent">
+        <section class="main-content clear-fix">
+            <form name="form1" method="post" enctype="multipart/form-data" action="/api/Bible">
+                <fieldset>
+                    <legend>Add or Update Bible</legend>
+                    <div>
+                        <label for="bibleDate">Please Input Date</label>
+                        <input type="date" name="bibleDate" ng-model="dateToUpdate"/>
+                        <button type="button"  class="btn btn-default" ng-click="getContent()">getContent</button>
+
+                    </div>
+                    <div>
+                        <div>
+                            <label for="bibleContent">Please Input content</label>
+                        </div>
+                        <textarea name="bibleContent" style="width:800px;height:800px;overflow:auto;word-wrap: break-word; word-break: normal; column-width:600px;"ng-model="content"></textarea>
+                    </div>
+                    <div>
+                        <label for="backGround">Please Upload BackGround</label>
+                        <input type="file" name="backGround" />
+                        <img ng-src="imagaPath" />
+                    </div>
+                    <div>
+                        <input type="submit" />
+                    </div>
+                </fieldset>
+            </form>
+        </section>
+    </div>
+    <script type="text/javascript" src="../../Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../../JS/Home/Apps/Administrator/updateBible.js"></script>
+</body>
+</html>
