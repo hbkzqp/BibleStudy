@@ -12,13 +12,15 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
-
 namespace BibleStudy.Controllers.AdministratorController
 {
-    public class BibleController : ApiController
+    public class BibleUpdateController : ApiController
     {
-        // GET: api/Bible
         [HttpGet]
+        public BibleContent GetName(string date)
+        {
+            return BibleAdminAdapter.getDayBible(date);
+        }
 
         //GET: api/Bible/5
         public int Get()
@@ -54,11 +56,11 @@ namespace BibleStudy.Controllers.AdministratorController
                 {
                     foreach (var val in provider.FormData.GetValues(key))
                     {
-                        if(key.Equals("bibleDate"))
+                        if (key.Equals("bibleDate"))
                         {
                             date = val;
                         }
-                        if(key.Equals("bibleContent"))
+                        if (key.Equals("bibleContent"))
                         {
                             content = val;
                         }
@@ -68,20 +70,21 @@ namespace BibleStudy.Controllers.AdministratorController
                 // This illustrates how to get the file names for uploaded files.
                 foreach (var file in provider.FileData)
                 {
-                    if(provider.FileData[0].Headers.ContentDisposition.FileName.Equals(""))
+                    if (provider.FileData[0].Headers.ContentDisposition.FileName.Equals(""))
                     {
-                        image = CommonInfo.DEFAULT_IMAGE_PATH;
+                        image = "";
                         FileInfo DfileInfo = new FileInfo(file.LocalFileName);
                         DfileInfo.Delete();
                         break;
                     }
                     FileInfo fileInfo = new FileInfo(file.LocalFileName);
                     string dic = fileInfo.DirectoryName;
-                    image = dic +"\\"+ date + provider.FileData[0].Headers.ContentDisposition.FileName.Replace("\"","");
+                    string imgName =    fileInfo.Name+date + provider.FileData[0].Headers.ContentDisposition.FileName.Replace("\"", "");
+                    image = dic +"\\"+ imgName;
                     fileInfo.MoveTo(image);
-                    image = CommonInfo.IMAGE_PATH+ date + provider.FileData[0].Headers.ContentDisposition.FileName.Replace("\"", "");
+                    image = CommonInfo.IMAGE_PATH + imgName;
                 }
-                BibleAdminAdapter.AddBible(date, image, content);
+                BibleAdminAdapter.updateBible(date, image, content);
                 return Redirect("http://localhost:50042/BibleViews/Administrator/HandleOK.html");
                 //return new HttpResponseMessage()
                 //{
@@ -91,17 +94,8 @@ namespace BibleStudy.Controllers.AdministratorController
             catch (System.Exception e)
             {
                 Log.writeLog(e.StackTrace, e.Message);
-                return  Redirect("http://localhost:50042/BibleViews/Administrator/Error.html");
+                return Redirect("http://localhost:50042/BibleViews/Administrator/Error.html");
             }
-        }
-        // PUT: api/Bible/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Bible/5
-        public void Delete(int id)
-        {
         }
     }
 }

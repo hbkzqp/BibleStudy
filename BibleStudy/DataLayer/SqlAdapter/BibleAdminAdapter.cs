@@ -63,5 +63,25 @@ namespace BibleStudy.DataLayer.SqlAdapter
             }
             return content;
         }
+        public static void updateBible(string date, string image, string content)
+        {
+            List<SqlCommand> cmdList = new List<SqlCommand>();
+            string updateSql = "";
+            if (image.Equals(""))
+            {
+                 updateSql = "UPDATE BIBLE_CONTENT SET B_CONTENT = @Content WHERE B_DATE = @Date";
+            }
+            else
+            {
+                updateSql = "UPDATE BIBLE_CONTENT SET B_CONTENT = @Content,IMAGE_PATH = @Path WHERE B_DATE = @Date";
+            }
+            
+            SqlParameter Content = new SqlParameter("@Content", content);//生成一个名字为@Id的参数,必须以@开头表示是添加的参数，并设置其类型长度，类型长度与数据库中对应字段相同
+            //SqlParameter Day1 = new SqlParameter("@Day", day);//生成一个名字为@Id的参数,必须以@开头表示是添加的参数，并设置其类型长度，类型长度与数据库中对应字段相同
+            SqlParameter Path = new SqlParameter("@Path", image);//生成一个名字为@Id的参数,必须以@开头表示是添加的参数，并设置其类型长度，类型长度与数据库中对应字段相同
+            SqlParameter Date = new SqlParameter("@Date", date);//生成一个名字为@Id的参数,必须以@开头表示是添加的参数，并设置其类型长度，类型长度与数据库中对应字段相同
+            SqlParameter[] insertParas = { Content, Path, Date };
+            SqlHelper.ExecteNonQueryText(updateSql, insertParas);
+        }
     }
 }

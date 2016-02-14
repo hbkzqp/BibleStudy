@@ -7,7 +7,7 @@
 <body ng-app="updateBible">
     <div ng-controller="bibleContent">
         <section class="main-content clear-fix">
-            <form name="form1" method="post" enctype="multipart/form-data" action="/api/Bible">
+            <form name="form1" method="post" enctype="multipart/form-data" action="/api/BibleUpdate">
                 <fieldset>
                     <legend>Add or Update Bible</legend>
                     <div>
@@ -24,8 +24,9 @@
                     </div>
                     <div>
                         <label for="backGround">Please Upload BackGround</label>
-                        <input type="file" name="backGround" />
-                        <img ng-src="imagaPath" />
+                        <input type="file" name="backGround" ng-model="newImagePath" />
+                        <img alt="original image" ng-src="../..{{imagePath}}" style="max-height:500px;max-width:1000px"/>
+                        <img alt="new image" ng-src="../..{{newImagePath}}" style="max-height:500px;max-width:1000px" />
                     </div>
                     <div>
                         <input type="submit" />

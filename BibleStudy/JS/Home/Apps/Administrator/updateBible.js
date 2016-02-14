@@ -6,6 +6,9 @@
     app.controller("bibleContent", function ($scope, $http)
     {
         $scope.dateToUpdate = "";
+        $scope.content = "";
+        $scope.imagePath = "";
+        $scope.newImagePath = "";
         $scope.getContent = function()
         {
             var dat = $scope.dateToUpdate;
@@ -34,7 +37,9 @@
             //    alert(response.statusText);
             //});
             var data;
-            getBible(dateData,data);
+            getBible(dateData);
+            $scope.content = bible.content;
+            $scope.imagePath = bible.imagePath;
         }
     });
 
@@ -42,7 +47,7 @@
     {
         $.ajax(
        {
-           url: "/api/Bible/GetName",
+           url: "/api/BibleUpdate/GetName",
            type: "get",
            data: { "date": date },
            async: false,
