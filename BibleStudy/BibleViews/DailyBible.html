@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link type="text/css" href="../Content/SiteStyle.css" rel="stylesheet"/>
+    <link type="text/css" href="../Content/DailyBibleStyle.css" rel="stylesheet" />
+
+</head>
+<body ng-app="DailyReading">
+    <div class="body_style" ng-controller="DailyController">
+        <div class="topBar">
+            <div >
+                <img src="../Resource/Images/hellp.jpg" class="LogoImgDaily logoDaily" />
+            </div>
+            
+        </div>
+        <div class="BibleReadingBtnGroup">
+            <button ng-hide="isBtnShow[0]" class="BibleReadingBtn  BtnColour" ng-click="dayBtnClick(1)">Monday</button>
+            <div ng-hide="!isBtnShow[0]" class="BibleReadingBtn"><br />Monday</div>
+            <button ng-hide="isBtnShow[1]" class="BibleReadingBtn BibleReadingOtherBtn  BtnColour" ng-click="dayBtnClick(2)">Tuesday</button>
+            <div ng-hide="!isBtnShow[1]" class="BibleReadingBtn"><br />Tuesday</div>
+            <button ng-hide="isBtnShow[2]" class="BibleReadingBtn BibleReadingOtherBtn  BtnColour" ng-click="dayBtnClick(3)">Wednesday</button>
+            <div ng-hide="!isBtnShow[2]" class="BibleReadingBtn"><br />Wednesday</div>
+            <button ng-hide="isBtnShow[3]" class="BibleReadingBtn BibleReadingOtherBtn  BtnColour" ng-click="dayBtnClick(4)">Thursday</button>
+            <div ng-hide="!isBtnShow[3]" class="BibleReadingBtn"><br />hursday</div>
+            <button ng-hide="isBtnShow[4]" class="BibleReadingBtn BibleReadingOtherBtn  BtnColour" ng-click="dayBtnClick(5)">Friday</button>
+            <div ng-hide="!isBtnShow[4]" class="BibleReadingBtn"><br />Friday</div>
+            <button ng-hide="isBtnShow[5]" class="BibleReadingBtn BibleReadingOtherBtn  BtnColour" ng-click="dayBtnClick(6)">Weekend</button>
+            <div ng-hide="!isBtnShow[5]" class="BibleReadingBtn"><br />Weekend</div>
+        </div>
+        <div class="BibleContainer">
+            <div class="PositionContainer"></div>
+            <div class="ContentContainer">
+                <div class="BibleContentContainer DetailBibleContentContainer">{{bibleContent}}</div>
+                <div class="BibleContentContainer ControlBtns">
+                    <div>
+                        <button class="BibleFontBtn RightBtn BtnColour">As</button>
+                        <button class="BibleFontBtn RightBtn BtnColour">中</button>
+                        <button class="BibleFontBtn LeftBtn BtnColour">En</button>
+                        <button class="BibleFontBtn LeftBtn BtnColour">Aa</button>
+                        <button class="BibleFontBtn BtnColour">Colour</button>
+                    </div>
+                    
+                </div>
+                <div class="BibleContentContainer DetailBibleContentContainer">{{bibleContent}}</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../JS/Tools.js"></script>
+    <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular-resource.min.js"></script>
+    <script type="text/javascript" src="../../JS/Home/Services/BibleManagement.js"></script>
+    <script type="text/javascript" src="../JS/Home/Apps/DailyReading/Controller/DailyController.js"></script>
+</body>
+</html>

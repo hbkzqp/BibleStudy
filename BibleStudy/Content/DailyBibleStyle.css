@@ -1,0 +1,88 @@
+﻿.topBar
+{
+    width:100%;
+    height:50px;
+    background-color:black;
+}
+.logoDaily
+{
+    margin-left:100px;
+
+}
+.LogoImgDaily
+{
+    width:100px;
+    height:150px;
+    z-index:3;
+}
+.BibleReadingBtnGroup
+{
+    width:900px;
+    height:50px;
+    margin-left:250px;
+    background-color:aliceblue;
+}
+.BibleReadingBtn
+{
+    height:50px;
+    width:150px;
+    float:left;
+    text-align:center
+}
+.BibleReadingOtherBtn
+{
+   margin-left:-4px;
+}
+.BtnColour
+{
+    background-color:orange;
+}
+.BtnClicked
+{
+    border-bottom-width:0px;
+    background-color:rgba(0,0,0,0);   
+}
+.BibleContainer
+{
+    width:1100px; 
+    background-color:aliceblue;
+    margin:auto;
+}
+.PositionContainer
+{
+    height:55px;
+    width:100%;
+}
+.ContentContainer
+{
+    height:650px;
+    width:100%;
+}
+.BibleContentContainer
+{
+    height:550px;
+    float:left;
+}
+.DetailBibleContentContainer
+{
+    width:500px
+}
+.ControlBtns
+{
+    width:100px;
+}
+.BibleFontBtn
+{
+    width:60px;
+    height:40px;
+    margin-bottom:20px;
+    margin-left:20px;
+}
+.LeftBtn
+{
+    text-align:left;
+}
+.RightBtn
+{
+    text-align:right;
+}

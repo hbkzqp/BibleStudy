@@ -58,11 +58,34 @@ namespace BibleStudy.DataLayer.SqlAdapter
             }
             return results;
         }
-       
+        public static BibleContent getBibleByDay(int day)
+        {
+            string sqlStr = "SELECT TOP 1 B_CONTENT AS content, B.WEEK_DAY, IMAGE_PATH as path  FROM BIBLE_CONTENT B WHERE B.WEEK_DAY = @Day ORDERBY B_DATE DESC";
+            SqlParameter Day = new SqlParameter("@Day", day);
+            SqlParameter[] paras = { Day};
+            DataTableCollection tables = SqlHelper.GetTableText(sqlStr, paras);
+            DataTable table = tables[0];
+            BibleContent content = new BibleContent();
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                
+                DataRow row = table.Rows[i];
+                content.content = row[CONTENT] as string;
+                content.dateWeek = Convert.ToInt32(row[DAY]);
+                content.imagePath = Convert.ToString(row[IMAGE_PATH]);
+
+            }//这边复制粘贴了, 有空改一改
+            return content;
+        }
         private static List<string> getThisWeek()
         {
             DateTime today = DateTime.Now;
             int weekday = (int)today.DayOfWeek;
+            if(weekday==0)//如果是周日
+            {
+                today = today.AddDays(-1);
+                weekday = 6;
+            }
             List<DateTime> weekList = new List<DateTime>();
             List<string> result = new List<string>();
             for (int i = 0;i<weekday;i++)

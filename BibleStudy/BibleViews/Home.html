@@ -4,9 +4,9 @@
     <title></title>
 	<meta charset="utf-8" />
     <link type="text/css" rel="stylesheet" href="../Content/SiteStyle.css" />
-    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet">
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="../JS/Tools.js"></script>
 </head>
 <body ng-app="BibleHome">
@@ -63,7 +63,7 @@
                     <!-- 轮播（Carousel）项目 -->
                     <div>
                         <div class="carousel-inner " >
-                            <div   class="item BibleContent" ng-repeat="bible in bibleList|orderBy:'dateWeek'"  ng-class="{active:BibleShowList[$index]}">
+                            <div   class="item BibleContent" ng-repeat="bible in bibleList|orderBy:'dateWeek'"  ng-class="{active:BibleShowList[$index]}" ng-click="bibleClicked($index)">
                                 <div class="SinglerBible" style="background-image:url(..{{bible.imagePath}});background-size:cover;">
                                        <div class="SingleBibleContent">
                                            {{bible.content}}
@@ -95,6 +95,8 @@
         
     </div>
     <script type="text/javascript" src="../Scripts/angular.min.js"></script>
+    <script type="text/javascript" src="../Scripts/angular-resource.min.js"></script>
+    <script type="text/javascript" src="../JS/Home/Services/BibleManagement.js"></script>
     <script type="text/javascript" src="../JS/Home/Home.js"></script>
 
 </body>
